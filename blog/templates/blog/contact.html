@@ -1,0 +1,81 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<nav class="light-green">
+  <div class="nav-wrapper lighten-4">
+    <a href="{% url 'home' %}" class="brand-logo right">django-py</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="{% url 'home' %}">Home</a></li>
+
+      {% for category in categories %}
+      <li>
+        <a href="{% url 'category' slug=category.slug %}">
+          {{ category.name }}
+        </a>
+      </li>
+      {% endfor %}
+      <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<form method="post">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="email" type="email" class="validate" />
+      <i class="material-icons prefix left">mode_edit</i>
+      <label for="email">Email</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <textarea id="textarea1" class="materialize-textarea"></textarea>
+      <label for="textarea1">Message</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </div>
+</form>
+
+{% block footer %}
+<footer class="page-footer light-green">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Company Bio</h5>
+        <p class="grey-text text-lighten-4">
+          We are a team of college students working on this project like it's
+          our full time job. Any amount would help support and continue
+          development on this project and is greatly appreciated.
+        </p>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Link 1</a></li>
+          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li><a class="white-text" href="#!">Link 3</a></li>
+          <li><a class="white-text" href="#!">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">Django-Py© 2021 Copyright</div>
+  </div>
+</footer>
+{% endblock %} {% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+<nav class="light-green">
+  <div class="nav-wrapper lighten-4">
+    <a href="{% url 'home' %}" class="brand-logo right">django-py</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="{% url 'home' %}">Home</a></li>
+
+      {% for category in categories %}
+      <li>
+        <a href="{% url 'category' slug=category.slug %}">
+          {{ category.name }}
+        </a>
+      </li>
+      {% endfor %}
+      <!-- <li><a href="{% url 'contact' %}">Contact</a></li> -->
+    </ul>
+  </div>
+</nav>
+<br />
+<div class="row container">
+  <div class="col s12 m12">
+    <div class="card z-depth-1 hoverable">
+      <div class="card-image">
+        <img src="{{post.image.url}}" height="250" />
+        <span class="card-title green-text">{{post.title}}</span>
+      </div>
+      <div class="card-content">{{post.body|safe|striptags}}</div>
+    </div>
+  </div>
+</div>
+
+<h6>Related Posts</h6>
+<hr />
+<br />
+<div class="row container">
+  {% for related in related_posts %}
+  <div class="col s12 m4">
+    <div class="card z-depth-1 hoverable">
+      <div class="card-image">
+        <img src="{{related.image.url}}" height="250" />
+        <span class="card-title green-text">{{related.title}}</span>
+      </div>
+      <div class="card-content">
+        {{related.body|slice:":100"|safe|striptags}}...
+      </div>
+      <div class="card-action waves-effect waves-ripple">
+        <a href="{% url 'post_detail' slug=related.slug %}">Read</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% block footer %}
+<footer class="page-footer light-green">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Developer Bio</h5>
+        <p class="grey-text text-lighten-4">
+          I am a self-taught web developer. I have been working on web
+          development for the past few years. I have a passion for learning new
+          technologies and I am always looking to improve my skills.
+        </p>
+      </div>
+
+      <div class="col l3 s12 offset-l2">
+        <h5 class="white-text">Connect</h5>
+        <ul>
+          <li>
+            <a
+              class="white-text"
+              href="https://www.linkedin.com/in/dominic-yeboah-b323b5104/"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a class="white-text" href="https://github.com/yeboahd24">GitHub</a>
+          </li>
+          <li>
+            <a
+              class="white-text"
+              href="https://web.facebook.com/dominic.yeboah.5209/"
+            >
+              Facebook
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">Django-Py© 2021 Copyright</div>
+  </div>
+</footer>
+{% endblock %} {% endblock %}
